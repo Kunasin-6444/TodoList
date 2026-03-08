@@ -20,9 +20,19 @@ export default function TodoItem({tasks, deleteTask, changeStatus, editTaskName}
                 return "bg-gray-100 text-gray-500";
         }
     };
+        const getStatusolor = (status: string) => {
+        switch (status) {
+            case "Todo":
+                return "border-black ";
+            case "Done":
+                return "border-emerald-600 shadow-emerald-600";
+            default:
+                return "";
+        }
+    };
     let listItems = tasks.map((task, index) => 
         //คลุม li ใหม่ ให้เป็น flex-col บนมือถือ และเป็น flex-row บนจอใหญ่ (sm:)
-        <li key={task.id} className="text-black bg-white rounded-[18px] text-left shadow-md border-[1px] flex flex-col sm:flex-row gap-3 sm:gap-0 justify-between px-4 py-3 items-start sm:items-center">
+        <li key={task.id} className={`text-black bg-white rounded-[18px] text-left shadow-md border-[1px] flex flex-col sm:flex-row gap-3 sm:gap-0 justify-between px-4 py-3 items-start sm:items-center ${getStatusolor(task.status)}`}>
             
             {/* ซีกซ้าย: ลำดับ สถานะ ชื่องาน (ให้ตัดคำถ้าชื่อยาวเกินไป) */}
             <div className="flex gap-[10px] items-start sm:items-center w-full sm:w-auto">
