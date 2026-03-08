@@ -8,24 +8,32 @@ interface todoItemProp {
 }
 
 export default function TodoItem({tasks, deleteTask, changeStatus, editTaskName}: todoItemProp){
-    let listItems = tasks.map((task, index) => 
-        <li key={task.id} className={`text-black bg-white shadow-sm rounded-[18px] flex justify-between px-[1rem] py-2 border-2 ${task.status === "Todo" ? " shadow-gray" : "border-emerald-600 shadow-emerald-600"}`}>
-            <div className="flex items-center justify-center gap-[10px]">
-                <div>{index+1}.</div>
-                <div className={`text-xl cursor-pointer font-bold ${task.status === "Todo" ? "text-black" : "text-emerald-600"}`} onClick={() => changeStatus(task.id, task.status)}>
+let listItems = tasks.map((task, index) => 
+        //คลุม li ใหม่ ให้เป็น flex-col บนมือถือ และเป็น flex-row บนจอใหญ่ (sm:)
+        <li key={task.id} className="text-black bg-white rounded-[18px] text-left shadow-md border-[1px] flex flex-col sm:flex-row gap-3 sm:gap-0 justify-between px-4 py-3 items-start sm:items-center">
+            
+            {/* ซีกซ้าย: ลำดับ สถานะ ชื่องาน (ให้ตัดคำถ้าชื่อยาวเกินไป) */}
+            <div className="flex gap-[10px] items-start sm:items-center w-full sm:w-auto">
+                <div className="min-w-[20px]">{index+1}.</div>
+                <div className={`cursor-pointer font-bold whitespace-nowrap ${task.status === "Todo" ? "text-black" : "text-emerald-600"}`} onClick={() => changeStatus(task.id, task.status)}>
                     {task.status}
                 </div>
-                <div>{task.name}</div>
+                {/* ใส่ break-words เพื่อให้ชื่องานยาวๆ ปัดบรรทัดใหม่ ไม่ดันกล่องพัง */}
+                <div className="break-words w-full pe-2">{task.name}</div>
             </div>
-            <div className="flex items-center justify-center gap-[10px]">
-                <div className={`flex items-center text-xl font-bold ${task.priority === "High"? "text-red-600 ":task.priority === "Normal"? "text-amber-300":"text-gray-500"}`}>{task.priority}</div>
+
+            {/* ซีกขวา: Priority และปุ่มต่างๆ (บนมือถือจะขยับไปชิดขวา) */}
+            <div className="flex gap-[10px] items-center self-end sm:self-auto bg-gray-50 sm:bg-transparent px-3 py-1 sm:p-0 rounded-lg">
+                <div className="text-gray-500 text-sm font-semibold whitespace-nowrap">{task.priority}</div>
+                
                 <button 
                   onClick={() => editTaskName(task.id, task.name, task.priority)}
                   className="text-blue-500 text-sm hover:text-blue-700 font-bold px-2"
                 >
                   Edit
                 </button>
-                <div className="cursor-pointer text-red-500 font-bold hover:text-red-700" onClick={() => deleteTask(task.id)}>X</div>
+
+                <div className="cursor-pointer text-red-500 font-bold hover:text-red-700 px-2" onClick={() => deleteTask(task.id)}>X</div>
             </div>
         </li>
     )

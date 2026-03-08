@@ -164,7 +164,7 @@ const sortedAndFilteredTasks = tasks
           </div>
         </header>
 
-        <div className="bg-black h-full text-white text-center px-[25%] overflow-hidden">
+        <div className="bg-slate-50 h-full text-black text-center md:px-[10%] lg:px-[20%] xl:px-[25%] overflow-hidden flex flex-col">
           <div className="bg-white px-8 pt-6 pb-2">
             <div className="flex justify-between items-center mb-2">
               <h2 className="text-xl font-bold text-gray-800">Your Progress</h2>
@@ -197,7 +197,7 @@ const sortedAndFilteredTasks = tasks
             )}
           </div>
 
-          <div className="bg-white text-black py-4 px-8 flex justify-between items-center border-b border-gray-400 z-10">
+          <div className="bg-white text-black py-4 px-4 sm:px-8 flex flex-wrap gap-3 justify-between items-center border-b border-gray-100 shadow-sm z-10">
             {/*Filter */}
             <div className="flex gap-2 sm:gap-4">
               <button 
