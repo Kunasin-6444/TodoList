@@ -10,7 +10,7 @@ export default function Overlay({ onClose, onAdd }: OverlayProps) {
   const [priority, setPriority] = useState("Normal");
 
   return (
-    <div className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+    <div className="absolute inset-0 bg-black/75 flex items-center justify-center z-50">
       <div className="bg-white text-black p-8 rounded-xl w-96 text-left shadow-2xl">
         <h2 className="text-2xl font-bold mb-6">Add New Task</h2>
         
